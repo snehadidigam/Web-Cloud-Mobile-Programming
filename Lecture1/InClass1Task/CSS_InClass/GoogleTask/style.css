@@ -131,6 +131,7 @@ input:focus {
 p {
   opacity: 0.5;
 }
+
 .imgContainer{
   display: flex;
   height: 100px;
