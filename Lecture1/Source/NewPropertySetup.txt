@@ -1,0 +1,174 @@
+1. Truncate and Import new_property_room_types_temp
+
+	SELECT * FROM inntender_training.new_property_room_types_temp;
+
+//Remove dupilcates
+	
+	insert into property_room_type
+(
+id_property,
+room_type_code,
+room_type_description,
+amount,
+weekend_rate,
+user_created,
+date_created)
+select 
+145,
+room_type_code,
+room_type_description,
+amount,
+weekend_rate,
+'adminsneha',
+now()
+ from new_property_room_types_temp;
+
+	
+//id= 145 (propertyID) and change user_created= adminsneha
+
+2. Truncate and Import new_property_rooms 
+
+	SELECT * FROM inntender_training.new_property_rooms_temp;
+
+//Remove duplicates
+
+	insert into rooms (
+id_property,
+roomno,
+level,
+smoking_policy,
+room_rate,
+weekend_rate,
+room_type,
+noofrooms,
+bedcount,
+bedtype1,
+bedtype2,
+bedtype3,
+bedtype4,
+occupancy,
+room_status,
+building,
+active_flag,
+active_inactive,
+user_created,
+date_created)
+select
+145,
+roomno,
+level,
+smoking_policy,
+room_rate,
+weekend_rate,
+room_type,
+1,
+bedcount,
+bedtype1,
+bedtype2,
+bedtype3,
+bedtype4,
+occupancy,
+'Ready',
+'Main',
+'Y',
+'Active',
+'adminsneha',
+now() from new_property_rooms_temp;
+
+
+// id= 145 (propertyID) and change user_created= adminsneha and building can be 'Main' or concat('cabin',building)
+
+3.
+
+	SELECT * FROM inntender_training.new_property_folio_charges_temp;
+
+	update inntender_training.new_property_folio_charges_temp set id_property=145;
+
+	select * from inntender_training.new_property_folio_charges_temp where id_property=145
+
+	insert into property_folio_charges( 
+id_property,
+folio_charge_item_description,
+folio_charge_item_number,
+folio_charge_item_unit_percent,
+is_auto_processed,
+tax_exempt_rate_flag,
+weekly_rate_flag,
+monthly_rate_flag,
+online_extra_flag,
+main_adjustment_flag,
+main_room_rate_adjustment_flag,
+house_transaction,
+room_service_flag,
+item_shouldbe_taxed,
+extra_daily_charge_flag,
+tax_exempt_flag,
+system_night_audit_roomrate_flag,
+active_flag,
+user_created,
+date_created,
+id_session_modified,
+id_revenue_category,
+txn_code,
+user_updated,
+date_updated,
+extra_description,
+adjustment_room_rate_id_property_folio_charge,
+package_flag,
+exclude_from_add_folio_item,
+folio_package_main_item_flag,
+multi_night_flag,
+credit_txn_code)
+select * from inntender_training.new_property_folio_charges_temp;
+
+	select * from inntender_training.property_folio_charges where id_property=145
+
+
+4.
+
+	insert into property_invoice_setup (
+id_property,
+id_property_folio_charge,
+amount,
+percent,
+active_flag,
+user_created,
+date_created)
+values
+(145,
+4215,
+1.00,
+'Y',
+'Y',
+'adminsneha',
+now())
+
+
+// you will get id_property_folio_charge in Table- inntender_training.property_folio_charges
+// Here go bottom and find folio_charge_item_description=spf for id_property=145
+
+	select * from inntender_training.property_invoice_setup where id_property=145
+
+5.
+	INSERT INTO `cc_payee` 
+(`merchant_name`, 
+`ccgw_type`, `user_created`, 
+`supports_cc_swipe`, 
+`keep_cc_on_file`, 
+`bypass_ccgw_since_manual_ccproc`, 
+`alt_text_for_credit_card`, 
+`user_updated`, 
+`date_updated`, 
+`date_created`, 
+`supports_emv`)
+VALUES	('Wamego', NULL, 'adminsneha', 0, 1, 1, 'Manual CC', NULL, NULL, NOW(), 0);
+
+
+// merchant_name has to be Changed
+
+	select * from cc_payee where merchant_name='Wamego'
+
+// select id_cc_payee and from above
+
+	
+update property set id_cc_payee = 94 where id_property = 145;
