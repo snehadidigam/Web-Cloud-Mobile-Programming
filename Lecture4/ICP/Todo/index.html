@@ -3,16 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <title>Todo in Angular.js</title>
-    <link rel="stylesheet" href="main.css">
+    <!-- <link rel="stylesheet" href="main.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300italic,400italic,500' rel='stylesheet'
           type='text/css'>
     <script src="https://use.fontawesome.com/21be5f2318.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
-    <script src="todo.js"></script> // 1. write JS (controller) code in "todo.js" to work with todo list
-</head>
-<body>
-// 2. write html(view) code to display the todo list
+    <script src="todo.js"></script>
+    <script>
+angular.module('todoApp', [])
+    .controller('todoController', function($scope) {
+        $scope.tasks = [];
+        $scope.add = function() {
+            $scope.tasks.push($scope.title);
+            $scope.title = null;
+        }
+        $scope.delete = function() {
+            $scope.tasks.splice(this.$index, 1);
+        }
+    })
+</script>
+<style>
+    body {
+  font-family: Helvetica, Arial, sans-serif;
+  border-top: 50px solid #4c4066;
+  margin: 0px auto;
+  font-size: 14px;
+  color: #666666;
+  font-size: 16px;
+}
+.select, input {
+  height: 1em;
+  font-size: 1em;
+  width: 25%;
+  padding: 5px;
+  text-align: center;
+  background-color: #fdfdfd;
+  border-bottom: 1px solid #e5e2e0;
+}
+h1 {
+  height: 1em;
+  font-size: 3em;
+  width: 50%;
+  padding: 5px;
+  text-align: center;
+  background-color: #fdfdfd;
+  border-bottom: 1px solid #e5e2e0;
+}
+button
+                {	background-color: rgb(141, 215, 235);
+                    border-radius: 8px;
+                    border: none;
+                    color: white;
+                    padding: 0px 15px;
+                    text-align: center;
+                    text-decoration: none;
+                    font-size :32px;
+                    margin: 5px;
+                    cursor: pointer;
+                    display: inline-block;
+                    transition: all 0.5s;
+                }
 
+
+</style></head>
+
+<body>
+    <center>
+    <h1>TO-DO List</h1>
+        <div ng-app="todoApp" ng-controller="todoController">
+                <form name= "f1" ng-submit="add()">
+                <input ng-model="title"><button>Add to List</button>
+                </form>
+                <h1>Your To-Do's: </h1>
+                <ul>
+                    <li ng-repeat="t in tasks track by $index">{{ t }} <button ng-click="delete()">x</button></li>
+
+                </ul>
+                
+            </div>
+            
+    </center>
 </body>
-</html>
+</html> 

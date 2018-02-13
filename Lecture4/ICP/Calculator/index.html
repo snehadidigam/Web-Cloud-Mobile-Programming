@@ -4,10 +4,53 @@
     <meta charset="UTF-8">
     <title>Calculator</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="calculator.js"></script> // 1. write JS (controller) code in "calculator.js" to work with calculator
+    <script src="calculator.js"></script> 
 </head>
+<style>
+    body {
+  font-family: Helvetica, Arial, sans-serif;
+  border-top: 50px solid #4c4066;
+  margin: 0px auto;
+  font-size: 14px;
+  color: #666666;
+  font-size: 16px;
+}
+.select, input[type='number'] {
+  height: 1em;
+  font-size: 1em;
+  width: 25%;
+  padding: 5px;
+  text-align: center;
+  background-color: #fdfdfd;
+  border-bottom: 1px solid #e5e2e0;
+}
+h1 {
+  height: 1em;
+  font-size: 3em;
+  width: 50%;
+  padding: 5px;
+  text-align: center;
+  background-color: #fdfdfd;
+  border-bottom: 1px solid #e5e2e0;
+}
+
+
+</style>
 <body>
-// 2. write html(view) code to display the todo list
+    <center>
+<h1>CALCULATOR</h1>
+<div ng-app="CalculatorApp" ng-controller="CalculatorController">
+    <p><input type="number" ng-model="a" placeholder="Enter your First Number.."></p>
+    <p><input type="number" ng-model="b" placeholder="Enter your Second Number.."></p>
+    <p>Choose your Operation: <select ng-model="operator">
+          <option>+</option>
+          <option>*</option>
+          <option>-</option>
+          <option>/</option>
+       </select></p>
+    <p>Your result is: {{ result() }}</p>
+</div>
 
 </body>
+</center>
 </html>
