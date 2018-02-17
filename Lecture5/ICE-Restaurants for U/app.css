@@ -1,0 +1,37 @@
+/* app css stylesheet */
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  border-top: 5px solid #1ab188;
+  margin: 0px auto;
+  font-size: 14px;
+  color: #1ab188;
+  font-size: 16px;
+}
+
+.menu {
+  list-style: upper-latin;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+.tblSpan
+{
+  width:200px;
+  height:auto;
+  margin:20px 20px 20px 20px;
+
+}
