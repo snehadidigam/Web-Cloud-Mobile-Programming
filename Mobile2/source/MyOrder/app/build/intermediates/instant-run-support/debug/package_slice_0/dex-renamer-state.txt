@@ -1,0 +1,4 @@
+#Thu Apr 05 14:28:20 CDT 2018
+base.0=C\:\\zzzzz\\masters\\Web-Cloud-Mobile\\weblab2\\MyOrder\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\58
+path.0=classes.dex
+renamed.0=classes.dex
