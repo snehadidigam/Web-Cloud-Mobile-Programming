@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     CalendarView calendar;
 
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void initializeCalendar() {
 
         calendar = (CalendarView) findViewById(R.id.calendar);
